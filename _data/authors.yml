@@ -1,0 +1,11 @@
+kilhyeonjun :
+  username: kilhyeonjun    # user name : martin
+  name: kilhyeonjun        # user full name : Martin Luther King
+  url_full:             # Homepage url
+  url:
+  bio: We are amazing developers.
+  # 회사정보
+  picture: assets/built/images/author-logo.jpg   # author image
+  facebook:             # facebook ID
+  twitter:              # twitter ID
+  cover: False

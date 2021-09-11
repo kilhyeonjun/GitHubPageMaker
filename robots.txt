@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kilhyeonjun.github.io/sitemap.xml
