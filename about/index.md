@@ -7,5 +7,4 @@ logo: 'assets/images/ghost.png'
 class: page-template
 subclass: 'post page'
 ---
-이것은 소리없는 아우성!!
-빌드 및 배포 자동화 설정
+(준비중 입니다)
