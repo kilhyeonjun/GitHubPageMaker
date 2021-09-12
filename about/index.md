@@ -7,4 +7,4 @@ logo: 'assets/images/ghost.png'
 class: page-template
 subclass: 'post page'
 ---
-(준비중 입니다)
+(준비중 입니다)  
