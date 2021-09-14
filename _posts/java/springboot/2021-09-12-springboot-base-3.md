@@ -140,3 +140,48 @@ date: "2021-09-12 21:00"
 - 보통 필터들이고, 해당 필터들은 내가 직접 등록할 수도 있지만 기본적으로 필요한 필터들은 자동 등록 되어집니다.
 
 ## 7. 스프링 컨테이너
+- DispatcherServlet에 의해 생성되어지는 수 많은 객체들은 ApplicationContext에서 관리됩니다. 이것을 IoC라고 합니다..
+
+### ApplicationContext
+- IoC란 제어의 역전을 의미합니다. 
+- 개발자가 직접 new를 통해 객체를 생성하게 된다면 해당 객체를 가르키는 레퍼런스 변수를 관리하기 어렵습니다. 
+- 그래서 스프링이 직접 해당 객체를 관리합니다. 
+- 이때 우리는 주소를 몰라도 됩니다. 
+- 왜냐하면 필요할 때 DI하면 되기 때문입니다.
+  - DI를 의존성 주입이라고 합니다. 
+- 필요한 곳에서 ApplicationContext에 접근하여 필요한 객체를 가져올 수 있습니다.
+- ApplicationContext는 싱글톤으로 관리되기 때문에 어디에서 접근하든 동일한 객체라는 것을 보장해줍니다.  
+
+ApplicationContext의 종류에는 두가지가 있는데 (root-applicationContext와 servlet-applicationContext) 입니다.
+
+#### a. servlet-applicationContext
+- servlet-applicationContext는 ViewResolver, Interceptor, MultipartResolver 객체를 생성하고 웹과 관련된 어노테이션 Controller, RestController를 스캔 합니다.
+- 해당 파일은 DispatcherServlet에 의해 실행됩니다.
+
+#### b. root-applicationContext
+- root-applicationContext는 해당 어노테이션을 제외한 어노테이션 Service, Repository등을 스캔하고 DB관련 객체를 생성합니다. (스캔이란 : 메모리에 로딩한다는 뜻)
+- 해당 파일은 ContextLoaderListener에 의해 실행됩니다. 
+- ContextLoaderListener를 실행해주는 녀석은 web.xml이기 때문에 root-applicationContext는 servlet-applicationContext보다 먼저 로드 됩니다.
+- 당연히 servlet-applicationContext에서는 root-applicationContext가 로드한 객체를 참조할 수 있지만 그 반대는 불가능합니다. 
+  - 생성 시점이 다르기 때문입니다.
+
+![img](assets/built/images/java/springboot/dispatcherServlet.png)
+
+### Bean Factory
+- 필요한 객체를 Bean Factory에 등록할 수 도 있습니다. 
+- 여기에 등록하면 초기에 메모리에 로드되지 않고 필요할 때 getBean()이라는 메소드를 통하여 호출하여 메모리에 로드할 수 있습니다. 
+- 이것 또한 IoC입니다. 
+- 그리고 필요할 때 DI하여 사용할 수 있습니다. 
+- ApplicationContext와 다른 점은 Bean Factory에 로드되는 객체들은 미리 로드되지 않고 필요할 때 호출하여 로드하기 때문에 lazy-loading이 된다는 점입니다.
+
+## 8 요청 주소에 따른 적절한 컨트롤로 요청 (Handler Mapping)
+- GET요청 ex) http://localhost:8080/post/1
+- 해당 주소 요청이 오면 적절한 컨트롤러의 함수를 찾아서 실행합니다.
+
+
+## 9 응답 (Response)
+- html파일을 응답할지 Data를 응답할지 결정해야 하는데 html 파일을 응답하게 되면 ViewResolver가 관여하게 됩니다.
+- 하지만 Data를 응답하게 되면 MessageConverter가 작동하게 되는데 메시지를 컨버팅할 때 기본전략은 json입니다.
+- Data를 리턴할 때는 메소드에 @ResponseBody 어노테이션을 붙입니다. 
+- 그럼 리턴값을 File이 아닌 Data로 취급합니다.
+- 그리고 리턴값이 객체이면 MessageConverter가 이 객체를 json으로 변환 후 리턴합니다.
