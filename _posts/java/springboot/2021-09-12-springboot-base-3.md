@@ -21,7 +21,7 @@ date: "2021-09-12 21:00"
 ## 1. 내장 톰캣을 가진다.
 - 톰캣을 따로 설치할 필요가 없이 내장되어있다.
 
-### Socket 이란
+### Socket 이란?
 - 네트워크 상에서 데이터를 보내거나 받기 위한 실제적인 창구 역할을 하는 것입니다.
 - 프로세스가 데이터를 보내거나 받기 위해서는 반드시 소켓을 통해서 해야합니다.
 - 소켓은 프로토콜, ip 주소, port 번호로 정의됩니다.
@@ -63,11 +63,11 @@ date: "2021-09-12 21:00"
 - 스레드를 재사용 함으로써 삭제와, 생성 과정을 안하기에 처리 시간이 단축됩니다.
 - 스레드를 사용 함으로써 여러개의 Reqeust를 동시에 처리할 수 있습니다.
 
-### URL 이란
+### URL 이란?
 -URL은 흔히 웹 주소라고도 하며, 컴퓨터 네트워크 상에서 리소스가 어디 있는지 알려주기 위한 규약입니다.
 - ex) https://kilhyeonjun.github.io/a.png
 
-### URI 란
+### URI 란?
 - URI는 특정 리소스를 식별하는 통합 자원 식별자(Uniform Resource Identifier)를 의미합니다.
 - ex) https://kilhyeonjun.github.io/picture/a
 
@@ -104,13 +104,39 @@ date: "2021-09-12 21:00"
 
 ### 리스너/필터 설정
 
-#### 필터 란 ?
+#### 필터 란?
 - 요청을 거르거나 가지고 있는 데이터를 필터링 하는 것입니다.  
 
-#### 리스너 란 ?
+#### 리스너 란?
 - 주어진 행동에 대해서 그 행동이 일어나는지 감시하는 것입니다.
 
 ### 보안
 - 보안 기능을 제공합니다.
 
 ## 4. FrontController 패턴
+- web.xml에 다 정의하기가 너무 힘들기 때문에 최초 앞단에서 request 요청을 받아서 필요한 클래스에 넘겨줍니다.
+- 이때 새로운 요청이 생기기 때문에 request와 response가 새롭게 생성 될 수 있습니다.
+- 그래서 아래의 RequestDispatcher가 필요합니다
+  - request와 response는 하나씩만 있을 수 있습니다.
+  - 하지만 FrontController에 설정한 데이터가 나타나면 해당 데이터에 대해  
+  새로 request 와 response가 생기는데, 최초의 request 와 response에    
+  덮어씌워지므로 기존 request 와 response를 유지 할 수 있는 방법이  
+  필요한데 그것이 RequestDispatcher 입니다.
+- Spring은 외부에서 웹서버의 자원으로 직접적으로 접근하는것이 막혀있기 때문에 바로 자원에 접근하는 것이 아닌 톰캣으로 향하게 됩니다.
+- 톰캣이 request와 response를 자동으로 나누어 객체로 만들어줍니다.
+
+### resquest 린?
+- 서버에게 요청한 정보가 들어있는 객체
+### response 란?
+- request를 토대로 서버에서 응답한 데이터를 담을 객체
+
+## 5. RequestDispatcher
+- 필요한 클래스 요청이 도달했을 때 FrontController에 도착한 request 와 response를 그대로 유지시켜줍니다.
+- 페이지를 이동할 때 RequestDispatcher를 이용하면 이전 페이지에서의 데이터를 그대로 가져올 수 있습니다.
+
+## 6. DisplatcherServlet
+- FrontController 패턴 과 RequestDispatcher의 기능을 합니다.
+- DispatcherServlet이 자동생성되어 질 때 수 많은 객체 생성(IoC)됩니다. 
+- 보통 필터들이고, 해당 필터들은 내가 직접 등록할 수도 있지만 기본적으로 필요한 필터들은 자동 등록 되어집니다.
+
+## 7. 스프링 컨테이너
