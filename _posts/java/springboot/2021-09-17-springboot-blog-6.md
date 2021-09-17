@@ -25,6 +25,7 @@ date: "2021-09-17 00:45"
 ## 2. yml 설정
 - web.xml, root-context.xml, servlet-context.xml의 합본
 - application.yml
+
 ~~~yaml
 server:
   port: 8000
