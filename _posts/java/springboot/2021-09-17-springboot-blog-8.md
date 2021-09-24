@@ -169,3 +169,11 @@ public class Reply {
 	private Timestamp creatDate;
 }
 ~~~
+
+## 2. 연관관계 만들기
+- @ManyToOne
+- @OneToMany
+- @OneToOne
+- @ManyToMany
+- ManyToMany는 사용하지 않는다. 
+- 그 이유는 서로의 primary key로만 중간 테이블을 생성해주는데, 날짜나 시간 다른 필드들이 필요할 수 있기 때문에, 내가 중간 테이블을 직접만들고 @OneToMany, @OneToMany를 사용한다.
