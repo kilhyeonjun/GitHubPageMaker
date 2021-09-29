@@ -4,7 +4,7 @@ current: post
 cover:  assets/built/images/hadoop/hadoop-logo.jpg
 navigation: True
 class: post-template
-subclass: 'post tag-hadoop  '
+subclass: 'post tag-hadoop'
 author: kilhyeonjun
 title: hadoop 환경 설치 (1)
 comments: true
