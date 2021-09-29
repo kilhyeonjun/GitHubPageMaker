@@ -13,7 +13,7 @@ categories:
 tags:
 - springboot
 - blog
-date: "2021-09-17 00:45"
+date: "2021-09-17 03:45"
 ---
 {% include springboot/springboot-blog-table-of-contents.html %}
 해당 게시물은 이 [강의](https://edu.goorm.io/lecture/24605/스프링부트-나만의-블로그-만들기)를 보고 제작하게되었습니다.
