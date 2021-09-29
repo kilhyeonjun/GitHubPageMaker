@@ -170,6 +170,8 @@ jps
 
 # WordCount 예제 테스트
 ~~~bash
+hadoop fs -mkdir -p /wordcount/input
+hadoop fs -put CHANGES.txt /wordcount/input
 hadoop jar WordCount.jar com.care.WordCount.WordCount /wordcount/input /wordcount/output
 hadoop fs -ls /wordcount/output/
 hadoop fs -cat /wordcount/output/part-00000
