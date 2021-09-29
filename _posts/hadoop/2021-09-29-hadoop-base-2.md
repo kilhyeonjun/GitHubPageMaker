@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/built/images/hadoop/hadoop-logo.jpg
+cover:  assets/built/images/hadoop/hadoop-logo.png
 navigation: True
 class: post-template
 subclass: 'post tag-hadoop'
@@ -12,8 +12,9 @@ categories:
 - hadoop
 tags:
 - hadoop
-date: "2021-09-28 10:40"
+date: "2021-09-29 10:40+0900"
 ---
+{% include hadoop/hadoop-table-of-contents.html %}
 본 게시물은 윈도우 환경에서 진행하였습니다.
 
 # JAVA 설치

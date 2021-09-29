@@ -1,7 +1,7 @@
 ---
 layout: post
 current: post
-cover:  assets/built/images/hadoop/hadoop-logo.jpg
+cover:  assets/built/images/hadoop/hadoop-logo.png
 navigation: True
 class: post-template
 subclass: 'post tag-hadoop'
@@ -14,6 +14,7 @@ tags:
 - hadoop
 date: "2021-09-14 20:50"
 ---
+{% include hadoop/hadoop-table-of-contents.html %}
 본 게시물은 윈도우 환경에서 진행하였습니다.
 
 # VirtualBox 설치
