@@ -146,9 +146,137 @@ date: "2021-10-02 16:51+09:00"
 <%@ include file="../layout/footer.jsp"%>
 ~~~
 ## 4. 회원 수정 화면
+- updateForm.jsp
 
+~~~jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+	<form>
+		<input type="hidden" id="id" value="${principal.user.id}" />
+		<div class="form-group">
+			<label for="username">Username</label> <input type="text" value="${principal.user.username}" class="form-control" placeholder="Enter username" id="username" readonly>
+		</div>
+
+		<div class="form-group">
+			<label for="password">Password</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
+		</div>
+				
+		<div class="form-group">
+			<label for="email">Email</label> <input type="email" value="${principal.user.email}" class="form-control" placeholder="Enter email" id="email">
+		</div>
+
+	</form>
+	<button id="btn-update" class="btn btn-primary">회원수정완료</button>
+</div>
+
+<script src="/js/user.js"></script>
+<%@ include file="../layout/footer.jsp"%>
+~~~
 ## 5. 글 목록 화면(메인화면)
+- index.jsp
 
+~~~jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="layout/header.jsp"%>
+
+<div class="container">
+	<c:forEach var="board" items="${boards.content}">
+		<div class="card m-2">
+			<div class="card-body">
+				<h4 class="card-title">${board.title}</h4>
+				<a href="/board/${board.id}" class="btn btn-primary">상세보기</a>
+			</div>
+		</div>
+	</c:forEach>
+	<ul class="pagination justify-content-center ">
+		<c:choose>
+			<c:when test="${boards.first}">
+				<li class="page-item disabled"><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" href="?page=${boards.number-1}">Previous</a></li>
+			</c:otherwise>
+		</c:choose>
+		<c:choose>
+			<c:when test="${boards.last}">
+				<li class="page-item disabled"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
+			</c:when>
+			<c:otherwise>
+				<li class="page-item"><a class="page-link" href="?page=${boards.number+1}">Next</a></li>
+			</c:otherwise>
+		</c:choose>
+
+	</ul>
+</div>
+
+<%@ include file="layout/footer.jsp"%>
+~~~
 ## 6. 글 상세보기 화면
+- detail.jsp
 
+~~~jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+	<button class="btn bg-secondary" onclick="history.back();">돌아가기</button>
+	<c:if test="${board.user.id == principal.user.id }">
+		<a href="/board/${board.id}/updateForm" class="btn btn-warning">수정</a>
+		<button id="btn-delete" class="btn btn-danger">삭제</button>
+	</c:if>
+	<br /> <br />
+	<div>
+		글 번호 : <span id="id"><i>${board.id} </i></span> 작성자 : <span><i>${board.user.username} </i></span>
+	</div>
+	<br />
+	<div>
+		<h3>${board.title}</h3>
+	</div>
+	<hr />
+	<div>
+		<div>${board.content }</div>
+	</div>
+	<hr />
+</div>
+
+<script src="/js/board.js"></script>
+<%@ include file="../layout/footer.jsp"%>
+~~~
 ## 7. 글 수정 화면
+- updateForm.jsp
+
+~~~jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+
+	<form action="" method="POST">
+	<input type="hidden" id="id" value="${board.id}">
+		<div class="form-group">
+			<label for="title">Title</label>
+			<input value="${board.title}" type="text" class="form-control" placeholder="Enter title" id="title">
+		</div>
+
+		<div class="form-group">
+			<label for="comment">Content:</label>
+			<textarea class="form-control summernote" rows="5" id="content">${board.content}</textarea>
+		</div>
+	</form>
+	<button id="btn-update" class="btn btn-primary">글수정 완료</button>
+</div>
+<script>
+	$('.summernote').summernote({
+		tabsize : 2,
+		height : 300
+	});
+</script>
+<script src="/js/board.js"></script>
+<%@ include file="../layout/footer.jsp"%>
+~~~
