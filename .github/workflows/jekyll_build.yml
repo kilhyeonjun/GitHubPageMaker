@@ -43,17 +43,4 @@ jobs:
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
       - uses: actions/checkout@v2
-        with:
-          repository: org/parent_repository
-          token: ${{ secrets.JEKYLL_PAT }}
-
-      - name: Pull & update submodules recursively
-        run: |
-          git submodule update --init --recursive
-          git submodule update --recursive --remote
-      - name: Commit
-        run: |
-          git config user.email "kboxstar@gmail.com"
-          git config user.name "kilhyeonjun"
-          git commit -am "Update submodules"
-          git push
+      - run: git submodule update --init --recursive
