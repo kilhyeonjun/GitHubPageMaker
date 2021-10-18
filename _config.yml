@@ -136,7 +136,6 @@ destination: ./output/
 # 없는것들을 명시한다. (node_modules와 필요없는 것들은 제외)
 exclude:
   - README.md
-  - Rakefile
   - Gemfile
   - Gemfile.lock
   - changelog.md
