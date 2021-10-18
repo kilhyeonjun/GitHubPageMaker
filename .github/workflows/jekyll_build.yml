@@ -32,7 +32,17 @@ jobs:
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
       - uses: actions/checkout@v2
-      - run: git submodule update --init --recursive
+      - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+      - name: Commit
+        run: |
+          git config user.email "kboxstar@gmail.com"
+          git config user.name "kilhyeonjun"
+          git add --all
+          git commit -m "Update submodules" || echo "No changes to commit"
+          git push
       # Use GitHub Actions' cache to shorten build times and decrease load on servers
       - uses: actions/cache@v1
         with:
