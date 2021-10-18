@@ -55,6 +55,5 @@ jobs:
         run: |
           git config user.email "kboxstar@gmail.com"
           git config user.name "kilhyeonjun"
-          git add --all
-          git commit -m "Update submodules" || echo "No changes to commit"
+          git commit -am "Update submodules"
           git push
