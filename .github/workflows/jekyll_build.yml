@@ -29,7 +29,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
+        env:
+          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
+      - uses: actions/checkout@v2
+      - run: git submodule update --init --recursive
       # Use GitHub Actions' cache to shorten build times and decrease load on servers
       - uses: actions/cache@v1
         with:
@@ -38,9 +41,3 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gems-
 
-      # Standard usage
-      - uses:  helaili/jekyll-action@2.0.3
-        env:
-          JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
-      - uses: actions/checkout@v2
-      - run: git submodule update --init --recursive
