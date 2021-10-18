@@ -19,7 +19,10 @@
 name: Jekyll CI
 
 on:
-  push
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   jekyll:
@@ -39,10 +42,6 @@ jobs:
       - uses:  helaili/jekyll-action@2.0.3
         env:
           JEKYLL_PAT: ${{ secrets.JEKYLL_PAT }}
-  update:
-    runs-on: ubuntu-latest
-
-    steps:
       - uses: actions/checkout@v2
         with:
           repository: org/parent_repository
