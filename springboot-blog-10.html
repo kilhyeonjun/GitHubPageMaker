@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Base Meta -->
+    <!-- dynamically fixing the title for tag/author pages -->
+
+
+
+    <title>springboot 블로그 10.화면구현</title>
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/screen.edited.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/built/syntax.css" />
+
+    <!-- custom.css -->
+    <link rel="stylesheet" type="text/css" href="/assets/built/custom.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- 웹폰트 추가 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!--[if IE]>
+        <style>
+            p, ol, ul{
+                width: 100%;
+            }
+            blockquote{
+                width: 100%;
+            }
+        </style>
+    <![endif]-->
+    
+    <!-- This tag outputs SEO meta+structured data and other important settings -->
+    <meta name="description" content="기록 블로그" />
+    <link rel="shortcut icon" href="https://kilhyeonjun.github.io/assets/built/images/favicon.jpg" type="image/png" />
+    <link rel="canonical" href="https://kilhyeonjun.github.io/springboot-blog-10" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+
+     <!--title below is coming from _includes/dynamic_title-->
+    <meta property="og:site_name" content="성장하는 개발자" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="springboot 블로그 10.화면구현" />
+    <meta property="og:description" content="springboot 블로그 springboot 블로그 1.환경 세팅 springboot 블로그 2.의존성 설정 springboot 블로그 3.MySQL 한글 설정 및 연결 springboot 블로그 4.Git 세팅 springboot 블로그 5.HTTP1.1 체험하기 springboot 블로그 6.yaml 설정 springboot 블로그 7.Lombok 세팅 springboot 블로그 8.테이블 생성하기 springboot 블로그 9.Json 데이터로 통신하기 springboot 블로그 10.화면구현 springboot 블로그 11.시큐리티 코드 짜기" />
+    <meta property="og:url" content="https://kilhyeonjun.github.io/springboot-blog-10" />
+    <meta property="og:image" content="https://kilhyeonjun.github.io/assets/built/images/java/springboot/spring-logo.png" />
+    <meta property="article:publisher" content="https://www.facebook.com/" />
+    <meta property="article:author" content="https://www.facebook.com/" />
+    <meta property="article:published_time" content="2021-10-02T07:51:00+00:00" />
+    <meta property="article:modified_time" content="2021-10-02T07:51:00+00:00" />
+    <meta property="article:tag" content="Springboot" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="springboot 블로그 10.화면구현" />
+    <meta name="twitter:description" content="springboot 블로그 springboot 블로그 1.환경 세팅 springboot 블로그 2.의존성 설정 springboot 블로그 3.MySQL 한글 설정 및 연결 springboot 블로그 4.Git 세팅 springboot 블로그 5.HTTP1.1 체험하기 springboot 블로그 6.yaml 설정 springboot 블로그 7.Lombok 세팅 springboot 블로그 8.테이블 생성하기 springboot 블로그 9.Json 데이터로 통신하기 springboot 블로그 10.화면구현 springboot 블로그 11.시큐리티 코드 짜기" />
+    <meta name="twitter:url" content="https://kilhyeonjun.github.io/" />
+    <meta name="twitter:image" content="https://kilhyeonjun.github.io/assets/built/images/java/springboot/spring-logo.png" />
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="성장하는 개발자" />
+    <meta name="twitter:label2" content="Filed under" />
+    <meta name="twitter:data2" content="Springboot" />
+    <meta name="twitter:site" content="@" />
+    <meta name="twitter:creator" content="@" />
+    <meta property="og:image:width" content="1400" />
+    <meta property="og:image:height" content="933" />
+
+    <!-- Google Search Console 소유권 확인 -->
+    <meta name="google-site-verification" content="FBsmwjwVnBh5LiBD5qe-twWrf0DVRpWQugAwxdCVdOg" />
+    <!-- Naver 웹마스터 도구 소유권 확인 -->
+    <meta name="naver-site-verification" content="2e0bce79b05585e9d6beafadb412eb1e3d8931f3" />
+
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Website",
+    "publisher": {
+        "@type": "Organization",
+        "name": "성장하는 개발자",
+        "logo": "https://kilhyeonjun.github.io/"
+    },
+    "url": "https://kilhyeonjun.github.io/springboot-blog-10",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://kilhyeonjun.github.io/assets/built/images/java/springboot/spring-logo.png",
+        "width": 2000,
+        "height": 666
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kilhyeonjun.github.io/springboot-blog-10"
+    },
+    "description": "springboot 블로그 springboot 블로그 1.환경 세팅 springboot 블로그 2.의존성 설정 springboot 블로그 3.MySQL 한글 설정 및 연결 springboot 블로그 4.Git 세팅 springboot 블로그 5.HTTP1.1 체험하기 springboot 블로그 6.yaml 설정 springboot 블로그 7.Lombok 세팅 springboot 블로그 8.테이블 생성하기 springboot 블로그 9.Json 데이터로 통신하기 springboot 블로그 10.화면구현 springboot 블로그 11.시큐리티 코드 짜기"
+}
+    </script>
+
+    <!-- <script type="text/javascript" src="https://demo.ghost.io/public/ghost-sdk.min.js?v=724281a32e"></script>
+    <script type="text/javascript">
+    ghost.init({
+    	clientId: "ghost-frontend",
+    	clientSecret: "f84a07a72b17"
+    });
+    </script> -->
+
+    <meta name="generator" content="Jekyll 3.6.2" />
+    <link rel="alternate" type="application/rss+xml" title="springboot 블로그 10.화면구현" href="/feed.xml" />
+
+
+</head>
+<body class="post-template">
+
+    <div class="site-wrapper">
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template -->
+
+<header class="site-header outer">
+    <div class="inner">
+        <nav class="site-nav">
+    <div class="site-nav-left">
+        
+            
+                <a class="site-nav-logo" href="https://kilhyeonjun.github.io/">성장하는 개발자</a>
+            
+        
+        
+            <ul class="nav" role="menu">
+    <li class="nav-home" role="menuitem"><a href="/">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="/about/">About</a></li>
+    <li class="nav-jekyll" role="menuitem"><a href="/tag/jekyll/">Jekyll</a></li>
+    <li class="nav-python" role="menuitem"><a href="/tag/python/">Python</a></li>
+    <li class="nav-java" role="menuitem"><a href="/tag/java/">Java</a></li>
+    <li class="nav-js" role="menuitem"><a href="/tag/js/">Js</a></li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/archive.html">All Posts</a>
+    </li>
+    <li class="nav-archive" role="menuitem">
+        <a href="/author_archive.html">Tag별 Posts</a>
+    </li>
+</ul>
+        
+    </div>
+    <div class="site-nav-right">
+        <div class="social-links">
+            
+            
+        </div>
+        
+            <a class="subscribe-button" href="#subscribe">Search</a>
+        
+    </div>
+</nav>
+
+    </div>
+</header>
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<main id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+
+        <article class="post-full  tag-springboot tag-blog post tag-java ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime=" 2 October 2021"> 2 October 2021</time>
+                    
+                        <span class="date-divider">/</span>
+                        
+                            
+                               <a href='/tag/springboot/'>SPRINGBOOT</a>,
+                            
+                        
+                            
+                               <a href='/tag/blog/'>BLOG</a>
+                            
+                        
+                    
+                </section>
+                <h1 class="post-full-title">springboot 블로그 10.화면구현</h1>
+            </header>
+
+            <!--
+            
+            <figure class="post-full-image" style="background-image: url(/assets/built/images/java/springboot/spring-logo.png)">
+            </figure>
+            
+            -->
+
+            <section class="post-full-content">
+                <div class="kg-card-markdown">
+                    <p><span class="table-of-contents-list">springboot 블로그</span></p>
+<ul class="table-of-contents-list">
+    <li><a href="./springboot-blog-1">springboot 블로그 1.환경 세팅</a></li>
+    <li><a href="./springboot-blog-2">springboot 블로그 2.의존성 설정</a></li>
+    <li><a href="./springboot-blog-3">springboot 블로그 3.MySQL 한글 설정 및 연결</a></li>
+    <li><a href="./springboot-blog-4">springboot 블로그 4.Git 세팅</a></li>
+    <li><a href="./springboot-blog-5">springboot 블로그 5.HTTP1.1 체험하기</a></li>
+    <li><a href="./springboot-blog-6">springboot 블로그 6.yaml 설정</a></li>
+    <li><a href="./springboot-blog-7">springboot 블로그 7.Lombok 세팅</a></li>
+    <li><a href="./springboot-blog-8">springboot 블로그 8.테이블 생성하기</a></li>
+    <li><a href="./springboot-blog-9">springboot 블로그 9.Json 데이터로 통신하기</a></li>
+    <li><a href="./springboot-blog-10">springboot 블로그 10.화면구현</a></li>
+    <li><a href="./springboot-blog-11">springboot 블로그 11.시큐리티 코드 짜기</a></li>
+</ul>
+<p>해당 게시물은 이 <a href="https://edu.goorm.io/lecture/24605/스프링부트-나만의-블로그-만들기">강의</a>를 보고 제작하게되었습니다.</p>
+
+<h1 id="화면구현">화면구현</h1>
+
+<h2 id="1-메뉴와-푸터">1. 메뉴와 푸터</h2>
+<ul>
+  <li>header.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+<span class="nt">&lt;%@ taglib </span><span class="na">prefix=</span><span class="s">"c"</span><span class="na"> uri=</span><span class="s">"http://java.sun.com/jsp/jstl/core"</span><span class="nt">%&gt;</span>
+<span class="nt">&lt;%@ taglib </span><span class="na">prefix=</span><span class="s">"sec"</span><span class="na"> uri=</span><span class="s">"http://www.springframework.org/security/tags"</span> <span class="nt">%&gt;</span>
+<span class="nt">&lt;sec:authorize </span><span class="na">access=</span><span class="s">"isAuthenticated()"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;sec:authentication </span><span class="na">property=</span><span class="s">"principal"</span><span class="na">  var=</span><span class="s">"principal"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/sec:authorize&gt;</span>
+<span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;title&gt;</span>Bootstrap Example<span class="nt">&lt;/title&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+	<span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">"navbar navbar-expand-md bg-dark navbar-dark"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"navbar-brand"</span> <span class="na">href=</span><span class="s">"/"</span><span class="nt">&gt;</span>kbox<span class="nt">&lt;/a&gt;</span>
+		<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"navbar-toggler"</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">data-toggle=</span><span class="s">"collapse"</span> <span class="na">data-target=</span><span class="s">"#collapsibleNavbar"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"navbar-toggler-icon"</span><span class="nt">&gt;&lt;/span&gt;</span>
+		<span class="nt">&lt;/button&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"collapse navbar-collapse"</span> <span class="na">id=</span><span class="s">"collapsibleNavbar"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;c:choose&gt;</span>
+				<span class="nt">&lt;c:when </span><span class="na">test=</span><span class="s">"</span><span class="si">${</span><span class="n">empty</span> <span class="n">principal</span><span class="si">}</span><span class="s">"</span><span class="nt">&gt;</span>
+					<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"navbar-nav"</span><span class="nt">&gt;</span>
+						<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"/auth/loginForm"</span><span class="nt">&gt;</span>로그인<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+						<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"/auth/joinForm"</span><span class="nt">&gt;</span>회원가입<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+					<span class="nt">&lt;/ul&gt;</span>
+				<span class="nt">&lt;/c:when&gt;</span>
+				<span class="nt">&lt;c:otherwise&gt;</span>
+					<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"navbar-nav"</span><span class="nt">&gt;</span>
+						<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"/board/form"</span><span class="nt">&gt;</span>글쓰기<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+						<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"/user/form"</span><span class="nt">&gt;</span>회원정보<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+						<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"nav-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"nav-link"</span> <span class="na">href=</span><span class="s">"/logout"</span><span class="nt">&gt;</span>로그아웃<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+					<span class="nt">&lt;/ul&gt;</span>
+				<span class="nt">&lt;/c:otherwise&gt;</span>
+			<span class="nt">&lt;/c:choose&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/nav&gt;</span>
+	<span class="nt">&lt;br&gt;</span>
+</code></pre></div></div>
+<ul>
+  <li>footer.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"jumbotron text-center"</span> <span class="na">style=</span><span class="s">"margin-bottom: 0"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;p&gt;</span>Created by kbox<span class="nt">&lt;/p&gt;</span>
+	<span class="nt">&lt;p&gt;</span>📞 010-0000-0000<span class="nt">&lt;/p&gt;</span>
+	<span class="nt">&lt;p&gt;</span>🏴 인하공업전문대학 컴퓨터정보과<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<h2 id="2-회원가입-화면">2. 회원가입 화면</h2>
+<ul>
+  <li>joinForm.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;form&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"username"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter username"</span> <span class="na">id=</span><span class="s">"username"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter password"</span> <span class="na">id=</span><span class="s">"password"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+				
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter email"</span> <span class="na">id=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+	<span class="nt">&lt;/form&gt;</span>
+	<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-save"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>회원가입완료<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/user.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+<h2 id="3-로그인-화면">3. 로그인 화면</h2>
+<ul>
+  <li>loginForm.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na">
+	pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/auth/loginProc"</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"username"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span>
+				<span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"username"</span> <span class="na">placeholder=</span><span class="s">"Enter username"</span>
+				<span class="na">id=</span><span class="s">"username"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span>
+				<span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"password"</span> <span class="na">placeholder=</span><span class="s">"Enter password"</span>
+				<span class="na">id=</span><span class="s">"password"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group form-check"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-check-label"</span><span class="nt">&gt;</span> <span class="nt">&lt;input</span>
+				<span class="na">class=</span><span class="s">"form-check-input"</span> <span class="na">name=</span><span class="s">"remember"</span> <span class="na">type=</span><span class="s">"checkbox"</span><span class="nt">&gt;</span>
+				Remember me
+			<span class="nt">&lt;/label&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+		<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-login"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>로그인<span class="nt">&lt;/button&gt;</span>
+	<span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+<h2 id="4-회원-수정-화면">4. 회원 수정 화면</h2>
+<ul>
+  <li>updateForm.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;form&gt;</span>
+		<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"id"</span> <span class="na">value=</span><span class="s">"${principal.user.id}"</span> <span class="nt">/&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"username"</span><span class="nt">&gt;</span>Username<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">value=</span><span class="s">"${principal.user.username}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter username"</span> <span class="na">id=</span><span class="s">"username"</span> <span class="na">readonly</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"password"</span><span class="nt">&gt;</span>Password<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"password"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter password"</span> <span class="na">id=</span><span class="s">"password"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+				
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"email"</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/label&gt;</span> <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"email"</span> <span class="na">value=</span><span class="s">"${principal.user.email}"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter email"</span> <span class="na">id=</span><span class="s">"email"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+	<span class="nt">&lt;/form&gt;</span>
+	<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-update"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>회원수정완료<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/user.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+<h2 id="5-글-목록-화면메인화면">5. 글 목록 화면(메인화면)</h2>
+<ul>
+  <li>index.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;c:forEach </span><span class="na">var=</span><span class="s">"board"</span><span class="na"> items=</span><span class="s">"</span><span class="si">${</span><span class="n">boards</span><span class="o">.</span><span class="na">content</span><span class="si">}</span><span class="s">"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card m-2"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"card-body"</span><span class="nt">&gt;</span>
+				<span class="nt">&lt;h4</span> <span class="na">class=</span><span class="s">"card-title"</span><span class="nt">&gt;</span>${board.title}<span class="nt">&lt;/h4&gt;</span>
+				<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/board/${board.id}"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>상세보기<span class="nt">&lt;/a&gt;</span>
+			<span class="nt">&lt;/div&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/c:forEach&gt;</span>
+	<span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"pagination justify-content-center "</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;c:choose&gt;</span>
+			<span class="nt">&lt;c:when </span><span class="na">test=</span><span class="s">"</span><span class="si">${</span><span class="n">boards</span><span class="o">.</span><span class="na">first</span><span class="si">}</span><span class="s">"</span><span class="nt">&gt;</span>
+				<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"?page=${boards.number-1}"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+			<span class="nt">&lt;/c:when&gt;</span>
+			<span class="nt">&lt;c:otherwise&gt;</span>
+				<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"?page=${boards.number-1}"</span><span class="nt">&gt;</span>Previous<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+			<span class="nt">&lt;/c:otherwise&gt;</span>
+		<span class="nt">&lt;/c:choose&gt;</span>
+		<span class="nt">&lt;c:choose&gt;</span>
+			<span class="nt">&lt;c:when </span><span class="na">test=</span><span class="s">"</span><span class="si">${</span><span class="n">boards</span><span class="o">.</span><span class="na">last</span><span class="si">}</span><span class="s">"</span><span class="nt">&gt;</span>
+				<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item disabled"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"?page=${boards.number+1}"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+			<span class="nt">&lt;/c:when&gt;</span>
+			<span class="nt">&lt;c:otherwise&gt;</span>
+				<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"page-item"</span><span class="nt">&gt;&lt;a</span> <span class="na">class=</span><span class="s">"page-link"</span> <span class="na">href=</span><span class="s">"?page=${boards.number+1}"</span><span class="nt">&gt;</span>Next<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+			<span class="nt">&lt;/c:otherwise&gt;</span>
+		<span class="nt">&lt;/c:choose&gt;</span>
+
+	<span class="nt">&lt;/ul&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+<h2 id="6-글-상세보기-화면">6. 글 상세보기 화면</h2>
+<ul>
+  <li>detail.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"btn bg-secondary"</span> <span class="na">onclick=</span><span class="s">"history.back();"</span><span class="nt">&gt;</span>돌아가기<span class="nt">&lt;/button&gt;</span>
+	<span class="nt">&lt;c:if </span><span class="na">test=</span><span class="s">"</span><span class="si">${</span><span class="n">board</span><span class="o">.</span><span class="na">user</span><span class="o">.</span><span class="na">id</span> <span class="o">==</span> <span class="n">principal</span><span class="o">.</span><span class="na">user</span><span class="o">.</span><span class="na">id</span> <span class="si">}</span><span class="s">"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/board/${board.id}/updateForm"</span> <span class="na">class=</span><span class="s">"btn btn-warning"</span><span class="nt">&gt;</span>수정<span class="nt">&lt;/a&gt;</span>
+		<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-delete"</span> <span class="na">class=</span><span class="s">"btn btn-danger"</span><span class="nt">&gt;</span>삭제<span class="nt">&lt;/button&gt;</span>
+	<span class="nt">&lt;/c:if&gt;</span>
+	<span class="nt">&lt;br</span> <span class="nt">/&gt;</span> <span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;div&gt;</span>
+		글 번호 : <span class="nt">&lt;span</span> <span class="na">id=</span><span class="s">"id"</span><span class="nt">&gt;&lt;i&gt;</span>${board.id} <span class="nt">&lt;/i&gt;&lt;/span&gt;</span> 작성자 : <span class="nt">&lt;span&gt;&lt;i&gt;</span>${board.user.username} <span class="nt">&lt;/i&gt;&lt;/span&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;br</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;div&gt;</span>
+		<span class="nt">&lt;h3&gt;</span>${board.title}<span class="nt">&lt;/h3&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;hr</span> <span class="nt">/&gt;</span>
+	<span class="nt">&lt;div&gt;</span>
+		<span class="nt">&lt;div&gt;</span>${board.content }<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;hr</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/board.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+<h2 id="7-글-수정-화면">7. 글 수정 화면</h2>
+<ul>
+  <li>updateForm.jsp</li>
+</ul>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/header.jsp"</span><span class="nt">%&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+
+	<span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">""</span> <span class="na">method=</span><span class="s">"POST"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">id=</span><span class="s">"id"</span> <span class="na">value=</span><span class="s">"${board.id}"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"title"</span><span class="nt">&gt;</span>Title<span class="nt">&lt;/label&gt;</span>
+			<span class="nt">&lt;input</span> <span class="na">value=</span><span class="s">"${board.title}"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">placeholder=</span><span class="s">"Enter title"</span> <span class="na">id=</span><span class="s">"title"</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+
+		<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+			<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">"comment"</span><span class="nt">&gt;</span>Content:<span class="nt">&lt;/label&gt;</span>
+			<span class="nt">&lt;textarea</span> <span class="na">class=</span><span class="s">"form-control summernote"</span> <span class="na">rows=</span><span class="s">"5"</span> <span class="na">id=</span><span class="s">"content"</span><span class="nt">&gt;</span>${board.content}<span class="nt">&lt;/textarea&gt;</span>
+		<span class="nt">&lt;/div&gt;</span>
+	<span class="nt">&lt;/form&gt;</span>
+	<span class="nt">&lt;button</span> <span class="na">id=</span><span class="s">"btn-update"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>글수정 완료<span class="nt">&lt;/button&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+	<span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">.summernote</span><span class="dl">'</span><span class="p">).</span><span class="nx">summernote</span><span class="p">({</span>
+		<span class="na">tabsize</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+		<span class="na">height</span> <span class="p">:</span> <span class="mi">300</span>
+	<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"/js/board.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;%@ include </span><span class="na">file=</span><span class="s">"../layout/footer.jsp"</span><span class="nt">%&gt;</span>
+</code></pre></div></div>
+
+                </div>
+            </section>
+
+            <!-- Email subscribe form at the bottom of the page -->
+            <!--
+            
+                <section class="subscribe-form">
+                    <h3 class="subscribe-form-title">Subscribe to 성장하는 개발자</h3>
+                    <p>Get the latest posts delivered right to your inbox</p>
+                    <span id="searchform" method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  />
+    <input class="location" type="hidden" name="location"  />
+    <input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" onkeyup="myFunc()"
+               id="searchtext" type="text" name="searchtext"
+               placeholder="Search..." />
+    </div>
+    <script type="text/javascript">
+        function myFunc() {
+            if(event.keyCode == 13) {
+                var url = encodeURIComponent($("#searchtext").val());
+                location.href = "/search.html?query=" + url;
+            }
+        }
+    </script>
+</span>
+                </section>
+            
+            -->
+            <footer class="post-full-footer">
+                <!-- Everything inside the #author tags pulls data from the author -->
+                <!-- #author-->
+                
+                    
+                        <section class="author-card">
+                            
+                                <img class="author-profile-image" src="/assets/built/images/author-logo.jpg" alt="kilhyeonjun" />
+                            
+                            <section class="author-card-content">
+                                <h4 class="author-card-name"><a href="/author/kilhyeonjun">kilhyeonjun</a></h4>
+                                
+                                    <p>We are amazing developers.</p>
+                                
+                            </section>
+                        </section>
+                        <div class="post-full-footer-right">
+                            <a class="author-card-button" href="/author/kilhyeonjun">Read More</a>
+                        </div>
+                    
+                
+                <!-- /author  -->
+            </footer>
+
+            <!-- If you use Disqus comments, just uncomment this block.
+            The only thing you need to change is "test-apkdzgmqhj" - which
+            should be replaced with your own Disqus site-id. -->
+            
+                <section class="post-full-comments">
+                    <div id="disqus_thread"></div>
+                    <script>
+                        var disqus_config = function () {
+                            var this_page_url = 'https://kilhyeonjun.github.io/springboot-blog-10';
+                            var this_page_identifier = '/springboot-blog-10';
+                            var this_page_title = 'springboot 블로그 10.화면구현';
+                        };
+                        (function() {
+                            var d = document, s = d.createElement('script');
+                            s.src = 'https://kilhyeonjun-github-io.disqus.com/embed.js';
+                            s.setAttribute('data-timestamp', +new Date());
+                            (d.head || d.body).appendChild(s);
+                        })();
+                    </script>
+                </section>
+            
+
+        </article>
+
+    </div>
+</main>
+
+<!-- Links to Previous/Next posts -->
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+                
+                
+                
+                
+                    <article class="read-next-card"
+                        
+                            style="background-image: url(/assets/built/images/blog-cover2.jpg)"
+                        
+                    >
+                        <header class="read-next-card-header">
+                            <small class="read-next-card-header-sitetitle">&mdash; 성장하는 개발자 &mdash;</small>
+                            
+                                <h3 class="read-next-card-header-title"><a href="/tag/springboot/">Springboot</a></h3>
+                            
+                        </header>
+                        <div class="read-next-divider"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/></svg>
+</div>
+                        <div class="read-next-card-content">
+                            <ul>
+                                
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/springboot-blog-11">springboot 블로그 11.시큐리티 코드 짜기</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/springboot-blog-9">springboot 블로그 9.Json 데이터로 통신하기</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                            <li><a href="/springboot-blog-8">springboot 블로그 8.테이블 생성하기</a></li>
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                    
+                                        
+                                        
+                                    
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                                  
+                                
+                            </ul>
+                        </div>
+                        <footer class="read-next-card-footer">
+                            <a href="/tag/springboot/">
+                                
+                                    See all 13 posts  →
+                                
+                            </a>
+                        </footer>
+                    </article>
+                
+            
+
+            <!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/springboot-blog-11">
+                <div class="post-card-image" style="background-image: url(/assets/built/images/java/springboot/spring-logo.png)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/springboot-blog-11">
+                <header class="post-card-header">
+                    
+                        
+                            
+                               <span class="post-card-tags">Springboot</span>
+                            
+                        
+                            
+                                <span class="post-card-tags">Blog</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">springboot 블로그 11.시큐리티 코드 짜기</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>springboot 블로그 springboot 블로그 1.환경 세팅 springboot 블로그 2.의존성 설정 springboot 블로그 3.MySQL 한글 설정 및 연결 springboot 블로그 4.Git 세팅 springboot 블로그 5.HTTP1.1 체험하기 springboot 블로그 6.yaml 설정 springboot 블로그 7.Lombok 세팅</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/built/images/author-logo.jpg" alt="kilhyeonjun" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/kilhyeonjun/">kilhyeonjun</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+            <!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs -->
+            
+                
+
+    <article class="post-card post-template">
+        
+            <a class="post-card-image-link" href="/go-base-4">
+                <div class="post-card-image" style="background-image: url(/assets/built/images/go/go-logo.jpg)"></div>
+            </a>
+        
+        <div class="post-card-content">
+            <a class="post-card-content-link" href="/go-base-4">
+                <header class="post-card-header">
+                    
+                        
+                            
+                                <span class="post-card-tags">Go</span>
+                            
+                        
+                    
+
+                    <h2 class="post-card-title">Go 패키지</h2>
+                </header>
+                <section class="post-card-excerpt">
+                    
+                        <p>Go 개념정리
+
+    Go 1.Go 기본 명령어(1)
+    Go 2.Go 기본 명령어(2)
+    Go 3.Go 함수
+    Go 4.Go 패키지
+    Go 5.Go 포인터
+    Go 6.Go array 배열
+    Go 7.Go slice 슬라이스
+
+
+</p>
+                    
+                </section>
+            </a>
+            <footer class="post-card-meta">
+                
+                    
+                        
+                        <img class="author-profile-image" src="/assets/built/images/author-logo.jpg" alt="kilhyeonjun" />
+                        
+                        <span class="post-card-author">
+                            <a href="/author/kilhyeonjun/">kilhyeonjun</a>
+                        </span>
+                    
+                
+                <span class="reading-time">
+                    
+                    
+                      1 min read
+                    
+                </span>
+            </footer>
+        </div>
+    </article>
+
+            
+
+        </div>
+    </div>
+</aside>
+
+<!-- Floating header which appears on-scroll, included from includes/floating-header.hbs -->
+<div class="floating-header">
+    <div class="floating-header-logo">
+        <a href="https://kilhyeonjun.github.io/">
+            
+            <span>성장하는 개발자</span>
+        </a>
+    </div>
+    <span class="floating-header-divider">&mdash;</span>
+    <div class="floating-header-title">springboot 블로그 10.화면구현</div>
+    <div class="floating-header-share">
+        <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
+</svg>
+</div>
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=springboot+%EB%B8%94%EB%A1%9C%EA%B7%B8+10.%ED%99%94%EB%A9%B4%EA%B5%AC%ED%98%84&amp;url=https://kilhyeonjun.github.io/springboot-blog-10"
+            onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+        </a>
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https://kilhyeonjun.github.io/springboot-blog-10"
+            onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+        </a>
+    </div>
+    <progress class="progress" value="0">
+        <div class="progress-container">
+            <span class="progress-bar"></span>
+        </div>
+    </progress>
+</div>
+
+
+<!-- /post -->
+
+<!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs -->
+
+
+        <!-- Previous/next page links - displayed on every page -->
+        
+
+        <!-- The footer at the very bottom of the screen -->
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="https://kilhyeonjun.github.io/">성장하는 개발자</a> &copy; 2021</section>
+                <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> &
+                    <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> using
+                    <a href="https://github.com/jekyllt/jasper2" target="_blank" rel="noopener">Jasper2</a></section>
+                <nav class="site-footer-nav">
+                    <a href="/">Latest Posts</a>
+                    
+                    
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- The big email subscribe modal content -->
+    
+        <div id="subscribe" class="subscribe-overlay">
+            <a class="subscribe-overlay-close" href="#"></a>
+            <div class="subscribe-overlay-content">
+                
+                <h1 class="subscribe-overlay-title">Search 성장하는 개발자</h1>
+                <p class="subscribe-overlay-description">
+                    lunr.js를 이용한 posts 검색 </p>
+                <span id="searchform" method="post" action="/subscribe/" class="">
+    <input class="confirm" type="hidden" name="confirm"  />
+    <input class="location" type="hidden" name="location"  />
+    <input class="referrer" type="hidden" name="referrer"  />
+
+    <div class="form-group">
+        <input class="subscribe-email" onkeyup="myFunc()"
+               id="searchtext" type="text" name="searchtext"
+               placeholder="Search..." />
+    </div>
+    <script type="text/javascript">
+        function myFunc() {
+            if(event.keyCode == 13) {
+                var url = encodeURIComponent($("#searchtext").val());
+                location.href = "/search.html?query=" + url;
+            }
+        }
+    </script>
+</span>
+            </div>
+        </div>
+    
+
+
+    <!-- highlight.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.10.0/components/prism-abap.min.js"></script>
+    <script>$(document).ready(function() {
+      $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+      });
+    });</script>
+
+    <!-- jQuery + Fitvids, which makes all video embeds responsive -->
+    <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="https://demo.ghost.io/assets/js/jquery.fitvids.js?v=724281a32e"></script>
+
+
+    <!-- Paginator increased to "infinit" in _config.yml -->
+    <!-- if paginator.posts  -->
+    <!-- <script>
+        var maxPages = parseInt('');
+    </script>
+    <script src="/assets/js/infinitescroll.js"></script> -->
+    <!-- /endif -->
+
+    
+
+
+    <!-- Add Google Analytics  -->
+    <!-- Google Analytics Tracking code -->
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-xxxxxxxx-x', 'auto');
+  ga('send', 'pageview');
+
+ </script>
+
+
+    <!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. -->
+    
+        <script>
+
+// NOTE: Scroll performance is poor in Safari
+// - this appears to be due to the events firing much more slowly in Safari.
+//   Dropping the scroll event and using only a raf loop results in smoother
+//   scrolling but continuous processing even when not scrolling
+$(document).ready(function () {
+    // Start fitVids
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // End fitVids
+
+    var progressBar = document.querySelector('progress');
+    var header = document.querySelector('.floating-header');
+    var title = document.querySelector('.post-full-title');
+
+    var lastScrollY = window.scrollY;
+    var lastWindowHeight = window.innerHeight;
+    var lastDocumentHeight = $(document).height();
+    var ticking = false;
+
+    function onScroll() {
+        lastScrollY = window.scrollY;
+        requestTick();
+    }
+
+    function onResize() {
+        lastWindowHeight = window.innerHeight;
+        lastDocumentHeight = $(document).height();
+        requestTick();
+    }
+
+    function requestTick() {
+        if (!ticking) {
+            requestAnimationFrame(update);
+        }
+        ticking = true;
+    }
+
+    function update() {
+        var trigger = title.getBoundingClientRect().top + window.scrollY;
+        var triggerOffset = title.offsetHeight + 35;
+        var progressMax = lastDocumentHeight - lastWindowHeight;
+
+        // show/hide floating header
+        if (lastScrollY >= trigger + triggerOffset) {
+            header.classList.add('floating-active');
+        } else {
+            header.classList.remove('floating-active');
+        }
+
+        progressBar.setAttribute('max', progressMax);
+        progressBar.setAttribute('value', lastScrollY);
+
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', onScroll, {passive: true});
+    window.addEventListener('resize', onResize, false);
+
+    update();
+});
+</script>
+
+    
+
+    <!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag -->
+    <!-- ghost_foot -->
+
+</body>
+</html>

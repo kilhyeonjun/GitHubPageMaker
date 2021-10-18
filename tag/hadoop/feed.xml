@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="https://kilhyeonjun.github.io/tag/hadoop/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://kilhyeonjun.github.io/" rel="alternate" type="text/html" />
+  <updated>2021-10-18T12:58:52+00:00</updated>
+  <id>https://kilhyeonjun.github.io/tag/hadoop/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">성장하는 개발자 | </title>
+  
+
+  
+    <subtitle>기록 블로그</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">hadoop 환경 설치 (2)</title>
+      <link href="https://kilhyeonjun.github.io/hadoop-base-2" rel="alternate" type="text/html" title="hadoop 환경 설치 (2)" />
+      <published>2021-09-29T01:40:00+00:00</published>
+      <updated>2021-09-29T01:40:00+00:00</updated>
+      <id>https://kilhyeonjun.github.io/hadoop-base-2</id>
+      <content type="html" xml:base="https://kilhyeonjun.github.io/hadoop-base-2">&lt;p&gt;&lt;span class=&quot;table-of-contents-list&quot;&gt;hadoop 개념정리&lt;/span&gt;&lt;/p&gt;
+&lt;ul class=&quot;table-of-contents-list&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;./hadoop-base-1&quot;&gt;하둡 1.hadoop 환경 설치 (1)&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./hadoop-base-2&quot;&gt;하둡 2.hadoop 환경 설치 (2)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;본 게시물은 윈도우 환경에서 진행하였습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;java-설치&quot;&gt;JAVA 설치&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;우분투 터미널 실행&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get update // 모듈 업데이트
+java &lt;span class=&quot;nt&quot;&gt;-version&lt;/span&gt; // 자바 버전확인 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;깔려있는지 확인하기 위함&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;default-jdk &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; // jdk 설차
+which java // java 파일 경로 확인
+&lt;span class=&quot;nb&quot;&gt;readlink&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; /usr/bin/java // &lt;span class=&quot;nb&quot;&gt;readlink&lt;/span&gt; : 심볼릭 링크의 원보 파일 확인 
+//readlink &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; : 심볼릭 링크를 따라 최종 파일의 절대경로로 반환 
+
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;vim /etc/profile 
+// 파일 맨 밑에
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/jvm/java-11-openjdk-amd64
+// 입력 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;readlink&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 에서 확인한 경로 입력&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; /etc/profile // 스크립트 수정값 적용
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;하둡-설치&quot;&gt;하둡 설치&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;wget http://apache.mirror.cdnetworks.com/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz 
+// 파일 다운
+
+&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;zxvf hadoop-2.9.2.tar.gz
+// 압축 해제
+
+&lt;span class=&quot;nb&quot;&gt;sudo cp&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; hadoop-2.9.2 /usr/local/hadoop
+// 압축 해제 폴더 복사
+
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; hadoop-2.9.2&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+// 기존 압축 해제 폴더 제거
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;하둡-사용자-등록-및-하둡-소유권-변경&quot;&gt;하둡 사용자 등록 및 하둡 소유권 변경&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;addgroup hadoop
+// hadoop 그룹 추가
+
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;adduser &lt;span class=&quot;nt&quot;&gt;--ingroup&lt;/span&gt; hadoop manager
+// hadoop 그룹에 manager 사용자 추가
+
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;adduser manager &lt;span class=&quot;nb&quot;&gt;sudo&lt;/span&gt;
+// manager 사용자를 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;그룹에 추가
+ 
+&lt;span class=&quot;nb&quot;&gt;sudo chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; manager:hadoop /usr/local/hadoop
+// hadoop 폴더 소유권 변경
+
+&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; /usr/local
+// 변경 됬는지 확인
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;하둡-환경-설정&quot;&gt;하둡 환경 설정&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;su - manager // user 변경
+nano ~/.bashrc
+// 파일 맨 밑에
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/hadoop
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;/bin
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;/sbin
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_MAPRED_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_COMMON_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;HADOOP_HDFS_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HADOOP_HOME&lt;/span&gt;
+// 입력
+
+&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; ~/.bashrc
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+// 파일 맨 밑에
+// &lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;JAVA_HOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/lib/jvm/java-11-openjdk-amd64
+// 입력
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;하둡-구성-설정&quot;&gt;하둡 구성 설정&lt;/h1&gt;
+
+&lt;h2 id=&quot;core-site-설정&quot;&gt;core-site 설정&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /usr/local/hadoop/tmp
+&lt;span class=&quot;nb&quot;&gt;sudo chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; manager:hadoop /usr/local/hadoop/tmp/
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /usr/local/hadoop/etc/hadoop/core-site.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;core-site.xml 파일 수정&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;hadoop.tmp.dir&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;/usr/local/hadoop/tmp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;fs.default.name&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;hdfs://localhost:62350&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;“localhost:62350”은 분산 컴퓨팅을 구현 시 master의 IP와 Port가 된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;mapred-site-설정&quot;&gt;mapred-site 설정&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; /usr/local/hadoop/etc/hadoop/mapred-site.xml.template /usr/local/hadoop/etc/hadoop/mapredsite.xml
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /usr/local/hadoop/etc/hadoop/mapred-site.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;mapred.job.tracker&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;localhost:62351&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;hdfs-site-설정&quot;&gt;hdfs-site 설정&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /usr/local/hadoop/hdfs/namenode
+&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /usr/local/hadoop/hdfs/datanode
+&lt;span class=&quot;nb&quot;&gt;sudo chown&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-R&lt;/span&gt; manager:hadoop /usr/local/hadoop/hdfs
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.replication&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;1&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.namenode.name.dir&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;file:/usr/local/hadoop/hdfs/namenode&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;property&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;name&amp;gt;&lt;/span&gt;dfs.datanode.data.dir&lt;span class=&quot;nt&quot;&gt;&amp;lt;/name&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;value&amp;gt;&lt;/span&gt;file:/usr/local/hadoop/hdfs/datanode&lt;span class=&quot;nt&quot;&gt;&amp;lt;/value&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/property&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;dfs.replication value가 1이면 싱글 모드 3은 분산 모드&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;인증키-생성&quot;&gt;인증키 생성&lt;/h2&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh-keygen &lt;span class=&quot;nt&quot;&gt;-t&lt;/span&gt; rsa
+ssh-copy-id &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; .ssh/id_rsa.pub manager@localhost
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;하둡-실행&quot;&gt;하둡 실행&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;manager 사용자 사용 (sudo su - manager)
+    &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hadoop namenode &lt;span class=&quot;nt&quot;&gt;-format&lt;/span&gt;
+start-dfs.sh
+jps 
+// java 실행중인 프로세스 확인
+// SecondaryNameNode, DataNode, Jps, NameNode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;wordcount-예제-테스트&quot;&gt;WordCount 예제 테스트&lt;/h1&gt;
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;hadoop fs &lt;span class=&quot;nt&quot;&gt;-mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; /wordcount/input
+hadoop fs &lt;span class=&quot;nt&quot;&gt;-put&lt;/span&gt; CHANGES.txt /wordcount/input
+hadoop jar WordCount.jar com.care.WordCount.WordCount /wordcount/input /wordcount/output
+hadoop fs &lt;span class=&quot;nt&quot;&gt;-ls&lt;/span&gt; /wordcount/output/
+hadoop fs &lt;span class=&quot;nt&quot;&gt;-cat&lt;/span&gt; /wordcount/output/part-00000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>kilhyeonjun</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="hadoop" />
+      
+
+      
+        <summary type="html">hadoop 개념정리 하둡 1.hadoop 환경 설치 (1) 하둡 2.hadoop 환경 설치 (2) 본 게시물은 윈도우 환경에서 진행하였습니다.</summary>
+      
+
+      
+      
+    </entry>
+  
+    <entry>
+      <title type="html">hadoop 환경 설치 (1)</title>
+      <link href="https://kilhyeonjun.github.io/hadoop-base-1" rel="alternate" type="text/html" title="hadoop 환경 설치 (1)" />
+      <published>2021-09-14T20:50:00+00:00</published>
+      <updated>2021-09-14T20:50:00+00:00</updated>
+      <id>https://kilhyeonjun.github.io/hadoop-base-1</id>
+      <content type="html" xml:base="https://kilhyeonjun.github.io/hadoop-base-1">&lt;p&gt;&lt;span class=&quot;table-of-contents-list&quot;&gt;hadoop 개념정리&lt;/span&gt;&lt;/p&gt;
+&lt;ul class=&quot;table-of-contents-list&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;./hadoop-base-1&quot;&gt;하둡 1.hadoop 환경 설치 (1)&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./hadoop-base-2&quot;&gt;하둡 2.hadoop 환경 설치 (2)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;본 게시물은 윈도우 환경에서 진행하였습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;virtualbox-설치&quot;&gt;VirtualBox 설치&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;assets/built/images/hadoop/vbdown.PNG&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;다운로드&lt;/a&gt; 를 클릭하여 해당 페이지로 이동&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Windows hosts 클릭 후 exe 파일 설치&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;머신 - 새로만들기&lt;/li&gt;
+  &lt;li&gt;우분투를 설치 할 것이기 때문에&lt;/li&gt;
+  &lt;li&gt;종류 Linux&lt;/li&gt;
+  &lt;li&gt;버전 Ubuntu(64bit)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/built/images/hadoop/memory.PNG&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;메모리 2GB
+    &lt;ul&gt;
+      &lt;li&gt;하둡을 이용할려면 2GB 정도 필요
+총 4개의 이미지가 필요하므로 8GB 이상 필요
+부족하면 메모리크기 줄이기&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;지금 새 가상 이미지 만들기&lt;/li&gt;
+  &lt;li&gt;VDI 선택&lt;/li&gt;
+  &lt;li&gt;동적할당 선택&lt;/li&gt;
+  &lt;li&gt;크기 20GB&lt;/li&gt;
+  &lt;li&gt;만들기 클릭&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;ubuntu-설치&quot;&gt;Ubuntu 설치&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;assets/built/images/hadoop/ubuntudown.png&quot; alt=&quot;img&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ubuntu.com/download/desktop&quot;&gt;다운로드&lt;/a&gt; 를 클릭하여 해당 페이지로 이동&lt;/li&gt;
+  &lt;li&gt;see our alternative downloads. 클릭&lt;/li&gt;
+  &lt;li&gt;Ubuntu 18.04 LTS (Bionic Beaver) 클릭&lt;/li&gt;
+  &lt;li&gt;64-bit PC (AMD64) desktop image 클릭하여 이미지 다운&lt;br /&gt;
+&lt;img src=&quot;assets/built/images/hadoop/disk.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;VirtualBox 설정 - 저장소 - 디스크 추가&lt;/li&gt;
+  &lt;li&gt;VirtualBox 시작 버튼을 눌러 우분투 설치&lt;/li&gt;
+  &lt;li&gt;한국어 설정&lt;/li&gt;
+  &lt;li&gt;ubuntu 설치&lt;/li&gt;
+  &lt;li&gt;기본 설정으로 진행&lt;/li&gt;
+  &lt;li&gt;사용자 입력&lt;/li&gt;
+  &lt;li&gt;설치가 완료되면 다시시작&lt;br /&gt;
+&lt;img src=&quot;assets/built/images/hadoop/net.png&quot; alt=&quot;img&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;우분투 종료후 VirtualBox 설정 - 네트워크 설정&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>kilhyeonjun</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="hadoop" />
+      
+
+      
+        <summary type="html">hadoop 개념정리 하둡 1.hadoop 환경 설치 (1) 하둡 2.hadoop 환경 설치 (2) 본 게시물은 윈도우 환경에서 진행하였습니다.</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>

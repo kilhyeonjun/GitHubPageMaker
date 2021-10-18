@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" >
+  <generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator>
+  <link href="https://kilhyeonjun.github.io/tag/jpa/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="https://kilhyeonjun.github.io/" rel="alternate" type="text/html" />
+  <updated>2021-10-18T12:58:52+00:00</updated>
+  <id>https://kilhyeonjun.github.io/tag/jpa/feed.xml</id>
+
+  
+  
+  
+
+  
+    <title type="html">성장하는 개발자 | </title>
+  
+
+  
+    <subtitle>기록 블로그</subtitle>
+  
+
+  
+
+  
+    
+      
+    
+  
+
+  
+  
+
+  
+    <entry>
+      <title type="html">springboot 2.JPA 란?</title>
+      <link href="https://kilhyeonjun.github.io/springboot-base-2" rel="alternate" type="text/html" title="springboot 2.JPA 란?" />
+      <published>2021-09-12T18:00:00+00:00</published>
+      <updated>2021-09-12T18:00:00+00:00</updated>
+      <id>https://kilhyeonjun.github.io/springboot-base-2</id>
+      <content type="html" xml:base="https://kilhyeonjun.github.io/springboot-base-2">&lt;p&gt;&lt;span class=&quot;table-of-contents-list&quot;&gt;springboot 개념정리&lt;/span&gt;&lt;/p&gt;
+&lt;ul class=&quot;table-of-contents-list&quot;&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-1&quot;&gt;springboot 1.스프링 이란?&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-2&quot;&gt;springboot 2.JPA 란?&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-3&quot;&gt;springboot 3.동작원리&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-4&quot;&gt;springboot 4.Git 세팅&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-5&quot;&gt;springboot 5.HTTP1.1 체험하기&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-6&quot;&gt;springboot 6.yaml 설정&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-7&quot;&gt;springboot 7.Lombok 세팅&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-8&quot;&gt;springboot 8.테이블 생성하기&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;./springboot-base-9&quot;&gt;springboot 9.Json 데이터로 통신하기&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;해당 게시물은 이 &lt;a href=&quot;https://edu.goorm.io/learn/lecture/24604/스프링부트-개념정리&quot;&gt;강의&lt;/a&gt;를 보고 제작하게되었습니다.&lt;/p&gt;
+&lt;h1 id=&quot;-jpa-란&quot;&gt;※ JPA 란?&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;자바 프로그램을 할때 영구적으로 데이터를 저장하기 위해서 필요한 인터페이스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-java-persistence-api-이다&quot;&gt;1. Java Persistence API 이다.&lt;/h2&gt;
+
+&lt;h3 id=&quot;persistence-란&quot;&gt;Persistence 란?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;영속성(persistence)은 데이터를 생성한 프로그램의 실행이 종료되더라도 사라지지 않는 데이터의 특성을 의미합니다&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;api-란&quot;&gt;API 란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Application Programming Interface 의 약자로 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;interface-란&quot;&gt;Interface 란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;인터페이스(interface)는 자바 프로그래밍 언어에서 클래스들이 구현해야 하는 동작을 지정하는데 사용되는 추상 자료형입니다.&lt;/li&gt;
+  &lt;li&gt;상하관계가 존재하는 약속이라고 볼 수 있습니다.&lt;/li&gt;
+  &lt;li&gt;이들은 프로토콜과 비슷합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;protocol-란&quot;&gt;protocol 란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;동등한 관계의 약속이라고 볼 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-orm-기술이다&quot;&gt;2. ORM 기술이다.&lt;/h2&gt;
+
+&lt;h3 id=&quot;orm-이란&quot;&gt;ORM 이란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Object Relational Mapping의 약자로 객체와 관계형 데이터베이스의 데이터를 자동으로 매핑(연결)해주는 것을 말합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-반복적인-crud-작업을-생략하게-해준다&quot;&gt;3. 반복적인 CRUD 작업을 생략하게 해준다.&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Select, Select All, Delete, Update, Insert와 같은 단순 반복적인 CRUD를 메소드 하나로 실행 가능합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;4-영속성-컨텍스트를-가지고-있다&quot;&gt;4. 영속성 컨텍스트를 가지고 있다.&lt;/h2&gt;
+
+&lt;h3 id=&quot;영속성-컨텍스트-란&quot;&gt;영속성 컨텍스트 란?&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;엔티티를 영구 저장하는 환경이라는 뜻입니다.&lt;/li&gt;
+  &lt;li&gt;애플리케이션과 데이터베이스 사이에서 객체를 보관하는 가상의 데이터베이스 같은 역할을 합니다.&lt;/li&gt;
+  &lt;li&gt;엔티티 매니저를 통해 엔티티를 저장하거나 조회하면 엔티티 매니저는 영속성 컨텍스트에 엔티티를 보관하고 관리합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;5-db와-oop의-불일치성을-해결하기-위한-방법론을-제공한다-db는-객체저장-불가능&quot;&gt;5. DB와 OOP의 불일치성을 해결하기 위한 방법론을 제공한다. (DB는 객체저장 불가능)&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;DB는 객체 타입의 데이터를 가질 수 없습니다.&lt;/li&gt;
+  &lt;li&gt;그러나 테이블을 클래스로 모델링할 때, ORM을 이용하면 모델링된 클래스는 객체를 가질 수 있습니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;6-oop의-관점에서-모델링을-할-수-있게-해준다-상속-컴포지션-연관관계&quot;&gt;6. OOP의 관점에서 모델링을 할 수 있게 해준다. (상속, 컴포지션, 연관관계)&lt;/h2&gt;
+
+&lt;h3 id=&quot;상속-이란&quot;&gt;상속 이란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;상속 받은 클래스를 모델링할 때, 상속 받은 필드도 테이블의 컬럼에 추가됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;컴포지션-이란&quot;&gt;컴포지션 이란&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;상속과 다르게 클래스를 결합하는 것으로 기존의 클래스가 새로운 클래스에 포함됩니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;7-방언-처리가-용이하여-migration하기-좋음-유지보수에도-좋음&quot;&gt;7. 방언 처리가 용이하여 Migration하기 좋음. 유지보수에도 좋음.&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;방언(dialect) 처리가 용이하다는 뜻은 연결할 수 있는 DB의 종류가 다양하다는 뜻입니다.&lt;/li&gt;
+  &lt;li&gt;JPA에는 추상화 객체가 있는데, 이 추상화 객체를 통해서 여러 DBMS에 연결 할 수 있기 때문에 Migration도 쉽고 유지보수 하기도 좋습니다.&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      <author>
+          <name>kilhyeonjun</name>
+        
+        
+      </author>
+
+      
+
+      
+        <category term="springboot" />
+      
+        <category term="jpa" />
+      
+
+      
+        <summary type="html">springboot 개념정리 springboot 1.스프링 이란? springboot 2.JPA 란? springboot 3.동작원리 springboot 4.Git 세팅 springboot 5.HTTP1.1 체험하기 springboot 6.yaml 설정 springboot 7.Lombok 세팅 springboot 8.테이블 생성하기 springboot 9.Json 데이터로 통신하기 해당 게시물은 이 강의를 보고 제작하게되었습니다. ※ JPA 란? 자바 프로그램을 할때 영구적으로 데이터를 저장하기 위해서 필요한 인터페이스</summary>
+      
+
+      
+      
+    </entry>
+  
+</feed>
