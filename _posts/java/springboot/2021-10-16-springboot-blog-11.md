@@ -120,3 +120,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	// 참고 : .csrf().disable() // csrf 토큰 비활성화 (테스트시 걸어주는 것이 좋음)
 }
 ~~~
+
+- loginForm.jsp 변경 (input type에 name 속성 넣기)
+~~~java
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp"%>
+
+<div class="container">
+	<form action="/auth/loginProc" method="post">
+		<div class="form-group">
+			<label for="username">Username</label> 
+			<input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
+		</div>
+				
+		<div class="form-group">
+			<label for="password">Password</label> 
+			<input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+		</div>
+		
+		<div class="form-group form-check">
+			<label class="form-check-label"> 
+			<input class="form-check-input" type="checkbox" name="remember"> Remember me
+			</label>
+		</div>
+		<button class="btn btn-primary">로그인</button>
+	</form>
+	
+</div>
+
+<%@ include file="../layout/footer.jsp"%>
+~~~
