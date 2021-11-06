@@ -275,3 +275,218 @@ public class PrincipalDetail implements UserDetails{
 	
 }
 ~~~
+
+- UserRepository.java 수정
+~~~java
+package com.kbox.blog.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cos.blog.model.User;
+
+// DAO
+// 자동으로 bean등록이 된다.
+// @Repository // 생략 가능하다.
+public interface UserRepository extends JpaRepository<User, Integer>{
+//  JPA Naming 쿼리
+//  SELECT * FROM user WHERE username = ?1 AND password = ?2;
+//  User findByUsernameAndPassword(String username, String password);
+	
+//	@Query(value="SELECT * FROM user WHERE username = ?1 AND password = ?2", nativeQuery = true)
+//	User login(String username, String password);
+	
+	Optional<User> findByUsername(String username);
+}
+~~~
+
+- UserService.java 수정
+~~~java
+package com.kbox.blog.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cos.blog.model.User;
+import com.cos.blog.repository.UserRepository;
+
+// 스프링이 컴포넌트 스캔을 통해서 Bean에 등록을 해줌. IoC를 해준다.
+@Service
+public class UserService {
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Transactional
+	public void 회원가입(User user) {
+		userRepository.save(user);
+	}
+	
+//	@Transactional(readOnly = true) // Select할 때 트랜잭션 시작, 서비스 종료시에 트랜잭션 종료 (정합성)
+//	public User 로그인(User user) {
+//		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+//	}
+}
+~~~
+
+- UserApiController.java 수정
+~~~java
+package com.kbox.blog.controller.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cos.blog.dto.ResponseDto;
+import com.cos.blog.model.RoleType;
+import com.cos.blog.model.User;
+import com.cos.blog.service.UserService;
+
+@RestController
+public class UserApiController {
+	
+	@Autowired
+	private UserService userService;
+	
+	@PostMapping("/auth/joinProc")
+	public ResponseDto<Integer> save(@RequestBody User user) { // username, password, email
+		user.setRole(RoleType.USER);
+		userService.회원가입(user);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1); // 자바오브젝트를 JSON으로 변환해서 리턴 (Jackson)
+	}
+	
+}
+~~~
+
+- PrincipalDetailService.java
+~~~java
+package com.kbox.blog.config.auth;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.cos.blog.model.User;
+import com.cos.blog.repository.UserRepository;
+
+@Service // Bean 등록 (IoC)
+public class PrincipalDetailService implements UserDetailsService{
+
+	@Autowired
+	private UserRepository userRepository;
+	
+	// LoginForm에서 action="/loginProc" 되면
+	// 스프링 필터 체인이 낚아채서 loadUserByUsername함수를 호출한다.
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User principal = userRepository.findByUsername(username)
+				.orElseThrow(()->{
+					return new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다. : "+username);
+				});
+
+		return new PrincipalDetail(principal);
+	}
+
+}
+~~~
+
+- SecurityConfig.java 최종
+~~~java
+package com.kbox.blog.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.cos.blog.config.auth.PrincipalDetailService;
+
+
+@Configuration // 빈 등록 (객체 생성)
+@EnableWebSecurity // 필터 체인에 등록 (스프링 시큐리티 활성화)
+@EnableGlobalMethodSecurity(prePostEnabled=true) // 특정 주소 접근시 권한 및 인증을 pre(미리) 체크하겠다.
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private PrincipalDetailService principalDetailService;
+	
+	// 1. Bean 어노테이션은 메서드에 붙여서 객체 생성시 사용
+	@Bean
+	public BCryptPasswordEncoder encodePWD() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	// 2. 시큐리티가 로그인할 때 어떤 암호화로 인코딩해서 비번을 비교할지 알려줘야 함.
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(principalDetailService).passwordEncoder(encodePWD());
+	}
+	
+	// 3. 필터링
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+		.csrf().disable()
+	    .authorizeRequests()
+	    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/auth/**")
+	    .permitAll()
+	    .anyRequest().authenticated()
+	    .and()
+	    .formLogin().loginPage("/auth/loginForm")
+	    .loginProcessingUrl("/auth/loginProc")
+	    .defaultSuccessUrl("/");
+	}
+	
+	// 참고 : .headers().frameOptions().disable() // 아이프레임 접근 막기
+	// 참고 : .csrf().disable() // csrf 토큰 비활성화 (테스트시 걸어주는 것이 좋음)
+}
+~~~
+
+- UserService.java 수정
+~~~java
+package com.kbox.blog.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.cos.blog.model.User;
+import com.cos.blog.repository.UserRepository;
+
+// 스프링이 컴포넌트 스캔을 통해서 Bean에 등록을 해줌. IoC를 해준다.
+@Service
+public class UserService {
+	
+	@Autowired
+	private BCryptPasswordEncoder encoder;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Transactional
+	public void 회원가입(User user) {
+		// 회원가입시 패스워드를 인코딩 하지 않으면 시큐리티 로그인을 이용할 수 없다.
+		String rawPassword = user.getPassword();
+		String encPassword = encoder.encode(rawPassword);
+		user.setPassword(encPassword);
+		userRepository.save(user);
+	}
+	
+//	@Transactional(readOnly = true) // Select할 때 트랜잭션 시작, 서비스 종료시에 트랜잭션 종료 (정합성)
+//	public User 로그인(User user) {
+//		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+//	}
+}
+~~~
